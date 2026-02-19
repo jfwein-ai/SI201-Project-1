@@ -1,0 +1,12 @@
+species,island,body_mass_g,year,sex,flipper_length_mm
+Adelie,Torgersen,3750,2007,MALE,181
+Adelie,Torgersen,3800,2007,FEMALE,186
+Adelie,Dream,3500,2007,MALE,178
+Adelie,Dream,3600,2007,FEMALE,174
+Chinstrap,Dream,3700,2008,MALE,192
+Chinstrap,Dream,3600,2008,FEMALE,185
+Chinstrap,Dream,3650,2008,MALE,196
+Gentoo,Biscoe,5000,2009,FEMALE,216
+Gentoo,Biscoe,4800,2009,NA,NA
+Gentoo,Biscoe,5200,2009,FEMALE,222
+Adelie,Biscoe,3900,2009,,
