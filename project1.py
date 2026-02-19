@@ -116,11 +116,9 @@ def over_50_bill_biscoe(data):
     result = {}
 
     for row in data:
-        island = rows['island']
-        bill = rows['bill_length_mm']
-        species = rows['species']
-
-        bill = float(bill)
+        island = row['island']
+        bill = row['bill_length_mm']
+        species = row['species']
 
         if bill == "" or bill == "NA":
             continue
@@ -128,8 +126,11 @@ def over_50_bill_biscoe(data):
         if island != "Biscoe":
             continue
 
+        bill = float(bill)
+
         if bill < 50:
             continue
+
 
         if species not in result:
             result[species] = 0
@@ -197,14 +198,20 @@ class TestAvgMaleFlipperlengthOnAdelie(unittest.TestCase):
 class TestNumBiscoeBillLengthAtLeastFifty(unittest.TestCase):
 
     def test_general_case(self):
-        # 
-        data = load_test_data("avg_flipper_length_male_adelie.csv")
-        result = male_flipper_length_Adelie(data)
+        #General case: correct count of bill >= 50mm Biscoe penguins per species.
+        data = load_test_data("count_long_bill_biscoe_by_species.csv")
+        result = over_50_bill_biscoe(data)
+        # Gentoo/Biscoe with bill >= 50: rows 1 (51.3) and 2 (50.0) = 2
+        self.assertEqual(result["Gentoo"], 2)
+        # Adelie/Biscoe with bill >= 50: rows 5 (50.6) and 10 (50.1) = 2
+        self.assertEqual(result["Adelie"], 2)
 
-    def test_general_case(self):
-        # 
-        data = load_test_data("avg_flipper_length_male_adelie.csv")
-        result = male_flipper_length_Adelie(data)
+    def test_edge_case_missing_values(self):
+        # Edge case: NA bills, empty bills, and non-Biscoe rows are excluded.
+        data = load_test_data("count_long_bill_biscoe_by_species.csv")
+        result = over_50_bill_biscoe(data)
+        # Chinstrap only appears on Dream island, so it should not exist in result
+        self.assertNotIn("Chinstrap", result)
 
 if __name__ == "__main__":
     unittest.main()
