@@ -57,6 +57,41 @@ def avg_body_mass_by_species_island(data):
 
     return result
 
+def avg_flipper_length_by_year_sex(data):
+    # For each year, what is the average flipper length of male and female penguins? (Noam)
+	# Columns: “year”, “sex” and “flipper_length_mm”
+    result = {}
+    
+    for row in data:
+        year = row["year"]
+        sex = row["sex"]
+        flipper = row["flipper_length_mm"]
+        
+        # Skip missing values
+        if flipper == "" or sex == "" or flipper is None:
+            continue
+        
+        flipper = float(flipper)
+        
+        if year not in result:
+            result[year] = {}
+        
+        if sex not in result[year]:
+            result[year][sex] = {"total": 0, "count": 0}
+        
+        result[year][sex]["total"] += flipper
+        result[year][sex]["count"] += 1
+    
+    # Convert totals to averages
+    for year in result:
+        for sex in result[year]:
+            total = result[year][sex]["total"]
+            count = result[year][sex]["count"]
+            result[year][sex] = total / count
+    
+    return result
+
+
 import unittest
 
 def load_test_data(filename):
@@ -79,6 +114,21 @@ class TestAvgBodyMassBySpeciesIsland(unittest.TestCase):
         result = avg_body_mass_by_species_island(data)
         # Gentoo/Biscoe: (5000 + 4800 + 5200) / 3 = 5000.0 (NA row excluded)
         self.assertAlmostEqual(result["Gentoo"]["Biscoe"], 5000.0)
+
+    def test_avg_flipper_length_general():
+        data = load_test_data("avg_body_mass_by_species_island.csv")
+        result = avg_flipper_length_by_year_sex(data)
+        
+        assert round(result["2007"]["Male"], 1) == 181.0
+        assert round(result["2009"]["Female"], 1) == 215.0
+
+
+    def test_avg_flipper_length_edge():
+        data = load_test_data("avg_body_mass_by_species_island.csv")
+        result = avg_flipper_length_by_year_sex(data)
+    
+    # Rows with missing sex or flipper length are ignored
+    assert "2007" in result
 
 if __name__ == "__main__":
     unittest.main()
