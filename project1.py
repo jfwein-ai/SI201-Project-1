@@ -20,10 +20,6 @@ with open(file_path, "r") as data:
 
 
 
-for row in rows:
-    species = row['species']
-    print(species)
-
 def avg_body_mass_by_species_island(data):
     # For each species, what is the average body mass on each island? (Noam)
 	# Columns: “species”, “Island”, and “body_mass_g”
