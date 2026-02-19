@@ -285,7 +285,43 @@ class TestNumBiscoeBillLengthAtLeastFifty(unittest.TestCase):
         result = over_50_bill_biscoe(data)
         # Chinstrap only appears on Dream island, so it should not exist in result
         self.assertNotIn("Chinstrap", result)
+class TestCountSpeciesSexByIsland(unittest.TestCase):
+    
+    def setUp(self):
+        self.data = load_test_data("elliot_test_data.csv")
 
+    def test_general_case(self):
+        """General case: properly counts valid rows for species/island/sex."""
+        result = count_species_sex_by_island(self.data)
+        self.assertEqual(result["Adelie"]["Torgersen"]["MALE"], 2)
+        self.assertEqual(result["Adelie"]["Torgersen"]["FEMALE"], 1)
+
+    def test_edge_case_missing_values(self):
+        """Edge case: skips rows with missing or NA species, island, or sex."""
+        result = count_species_sex_by_island(self.data)
+        self.assertNotIn("NA", result)
+        self.assertNotIn("", result)
+        self.assertEqual(result["Gentoo"]["Biscoe"]["MALE"], 4)
+
+
+class TestMostCommonFlipperAndBillByIsland(unittest.TestCase):
+    
+    def setUp(self):
+        self.data = load_test_data("elliot_test_data.csv")
+
+    def test_general_case(self):
+        """General case: correctly finds the mode for both flippers and bills."""
+        result = most_common_flipper_and_bill_by_island(self.data)
+        self.assertEqual(result["Biscoe"]["most_common_flipper_length"], 210.0)
+        self.assertEqual(result["Biscoe"]["most_common_bill_length"], 50.0)
+
+    def test_edge_case_missing_values(self):
+        """Edge case: skips rows with missing island, flipper, or bill values when calculating mode."""
+        result = most_common_flipper_and_bill_by_island(self.data)
+        self.assertNotIn("NA", result)
+        self.assertNotIn("", result)
+        self.assertEqual(result["Torgersen"]["most_common_flipper_length"], 190.0)
+        self.assertEqual(result["Torgersen"]["most_common_bill_length"], 40.0)
 if __name__ == "__main__":
     unittest.main()
 
