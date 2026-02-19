@@ -99,7 +99,7 @@ def male_flipper_length_Adelie(data):
         flipper = row['flipper_length_mm']
         sex = row['sex']
 
-        if flipper == "NA" or sex == "NA":
+        if flipper == "NA" or flipper == "" or sex == "NA" or sex == "":
             continue
         
         if species != "Adelie" or sex != "MALE":
@@ -154,14 +154,18 @@ class TestAvgFlipperLengthByYearSex(unittest.TestCase):
 class TestAvgMaleFlipperlengthOnAdelie(unittest.TestCase):
 
     def test_general_case(self):
-        data = load_test_data()
+        # General case: correct average flipper length for male Adelie penguins.
+        data = load_test_data("avg_flipper_length_male_adelie.csv")
         result = male_flipper_length_Adelie(data)
-        self.assertAlmostEqual
+        # Male Adelie rows: (181 + 179 + 185 + 183) / 4 = 182.0
+        self.assertAlmostEqual(result, 182.0)
 
     def test_edge_case_missing_values(self):
-        data = load_test_data()
+        # Edge case: NA and empty string rows are excluded from the average.
+        data = load_test_data("avg_flipper_length_male_adelie.csv")
         result = male_flipper_length_Adelie(data)
-
+        # NA flipper row and empty sex row are excluded — result is still 182.0, not skewed
+        self.assertAlmostEqual(result, 182.0)
 
 if __name__ == "__main__":
     unittest.main()
