@@ -55,7 +55,7 @@ def avg_body_mass_by_species_island(data):
 
 def avg_flipper_length_by_year_sex(data):
     # For each year, what is the average flipper length of male and female penguins? (Noam)
-	# Columns: “year”, “sex” and “flipper_length_mm”
+	# Columns: “year”, “sex” and “flipper_length_mm"
     result = {}
     
     for row in data:
@@ -86,6 +86,30 @@ def avg_flipper_length_by_year_sex(data):
             result[year][sex] = total / count
     
     return result
+
+def male_flipper_length_Adelie(data):
+    # What is the average flipper length of male Adelie penguins? (Jared)
+    # Columns: “species,” “flipper_length_mm,” and “sex”
+
+    total = 0
+    count = 0
+
+    for row in data:
+        species = row['species']
+        flipper = row['flipper_length_mm']
+        sex = row['sex']
+
+        if flipper == "NA" or sex == "NA":
+            continue
+        
+        if species != "Adelie" or sex != "MALE":
+            continue
+            
+        total += float(flipper)
+        count += 1
+
+    return total / count
+
 
 
 import unittest
@@ -126,6 +150,17 @@ class TestAvgFlipperLengthByYearSex(unittest.TestCase):
         result = avg_flipper_length_by_year_sex(data)
         # 2009/FEMALE: (216 + 222) / 2 = 219.0 (NA row and empty string row excluded)
         self.assertAlmostEqual(result["2009"]["FEMALE"], 219.0)
+
+class TestAvgMaleFlipperlengthOnAdelie(unittest.TestCase):
+
+    def test_general_case(self):
+        data = load_test_data()
+        result = male_flipper_length_Adelie(data)
+        self.assertAlmostEqual
+
+    def test_edge_case_missing_values(self):
+        data = load_test_data()
+        result = male_flipper_length_Adelie(data)
 
 
 if __name__ == "__main__":
