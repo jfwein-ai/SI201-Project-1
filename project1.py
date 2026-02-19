@@ -110,6 +110,33 @@ def male_flipper_length_Adelie(data):
 
     return total / count
 
+def over_50_bill_biscoe(data):
+    # For penguins that live on Biscoe island, how many have a bill length of at least 50 mm for each species? (Jared)
+    # Columns: “island,” “bill_length_mm,” and “species”
+    result = {}
+
+    for row in data:
+        island = rows['island']
+        bill = rows['bill_length_mm']
+        species = rows['species']
+
+        bill = float(bill)
+
+        if bill == "" or bill == "NA":
+            continue
+        
+        if island != "Biscoe":
+            continue
+
+        if bill < 50:
+            continue
+
+        if species not in result:
+            result[species] = 0
+
+        result[species] += 1
+
+    return result
 
 
 import unittest
@@ -166,6 +193,18 @@ class TestAvgMaleFlipperlengthOnAdelie(unittest.TestCase):
         result = male_flipper_length_Adelie(data)
         # NA flipper row and empty sex row are excluded — result is still 182.0, not skewed
         self.assertAlmostEqual(result, 182.0)
+
+class TestNumBiscoeBillLengthAtLeastFifty(unittest.TestCase):
+
+    def test_general_case(self):
+        # 
+        data = load_test_data("avg_flipper_length_male_adelie.csv")
+        result = male_flipper_length_Adelie(data)
+
+    def test_general_case(self):
+        # 
+        data = load_test_data("avg_flipper_length_male_adelie.csv")
+        result = male_flipper_length_Adelie(data)
 
 if __name__ == "__main__":
     unittest.main()
