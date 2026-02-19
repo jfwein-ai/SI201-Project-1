@@ -138,6 +138,29 @@ def over_50_bill_biscoe(data):
         result[species] += 1
 
     return result
+def count_species_sex_by_island(data):
+    result = {}
+
+    for row in data:
+        species = row["species"]
+        island = row["island"]
+        sex = row["sex"]
+
+        if "" in (species, island, sex) or "NA" in (species, island, sex):
+            continue
+
+        if species not in result:
+            result[species] = {}
+        
+        if island not in result[species]:
+            result[species][island] = {}
+            
+        if sex not in result[species][island]:
+            result[species][island][sex] = 0
+
+        result[species][island][sex] += 1
+
+    return result
 
 
 import unittest
