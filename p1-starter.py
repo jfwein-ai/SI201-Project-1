@@ -68,7 +68,7 @@ def avg_flipper_length_by_year_sex(data):
         flipper = row["flipper_length_mm"]
         
         # Skip missing values
-        if flipper == "" or sex == "" or flipper is None:
+        if flipper == "" or sex == "" or flipper is None or flipper == "NA" or sex == "NA" :
             continue
         
         flipper = float(flipper)
@@ -115,20 +115,22 @@ class TestAvgBodyMassBySpeciesIsland(unittest.TestCase):
         # Gentoo/Biscoe: (5000 + 4800 + 5200) / 3 = 5000.0 (NA row excluded)
         self.assertAlmostEqual(result["Gentoo"]["Biscoe"], 5000.0)
 
-    def test_avg_flipper_length_general():
-        data = load_test_data("avg_body_mass_by_species_island.csv")
-        result = avg_flipper_length_by_year_sex(data)
-        
-        assert round(result["2007"]["Male"], 1) == 181.0
-        assert round(result["2009"]["Female"], 1) == 215.0
+class TestAvgFlipperLengthByYearSex(unittest.TestCase):
 
-
-    def test_avg_flipper_length_edge():
-        data = load_test_data("avg_body_mass_by_species_island.csv")
+    def test_general_case(self):
+        """General case: correct average flipper length computed for a known year/sex."""
+        data = load_test_data("avg_flipper_length_by_year_sex.csv")
         result = avg_flipper_length_by_year_sex(data)
-    
-    # Rows with missing sex or flipper length are ignored
-    assert "2007" in result
+        # 2007/MALE: (181 + 178) / 2 = 179.5
+        self.assertAlmostEqual(result["2007"]["MALE"], 179.5)
+
+    def test_edge_case_missing_values(self):
+        """Edge case: rows with NA or empty sex/flipper are skipped and don't affect the average."""
+        data = load_test_data("avg_flipper_length_by_year_sex.csv")
+        result = avg_flipper_length_by_year_sex(data)
+        # 2009/FEMALE: (216 + 222) / 2 = 219.0 (NA row and empty string row excluded)
+        self.assertAlmostEqual(result["2009"]["FEMALE"], 219.0)
+
 
 if __name__ == "__main__":
     unittest.main()
