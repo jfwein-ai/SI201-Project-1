@@ -1,0 +1,11 @@
+species,island,body_mass_g,year,sex,flipper_length_mm,bill_length_mm
+Gentoo,Biscoe,5000,2007,MALE,210,51.3
+Gentoo,Biscoe,4800,2007,FEMALE,216,50.0
+Gentoo,Biscoe,5200,2008,MALE,222,49.5
+Adelie,Biscoe,3750,2007,MALE,181,38.2
+Adelie,Biscoe,3800,2008,FEMALE,179,50.6
+Chinstrap,Dream,3700,2007,MALE,192,51.0
+Gentoo,Biscoe,4600,2009,FEMALE,205,NA
+Adelie,Torgersen,3900,2008,MALE,185,52.1
+Gentoo,Biscoe,5100,2009,MALE,218,
+Adelie,Biscoe,4000,2009,FEMALE,183,50.1
