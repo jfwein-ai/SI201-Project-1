@@ -57,6 +57,29 @@ def avg_body_mass_by_species_island(data):
 
     return result
 
-result = avg_body_mass_by_species_island(rows)
-print(result)
+import unittest
+
+def load_test_data(filename):
+    with open(filename, "r") as f:
+        reader = csv.DictReader(f)
+        return list(reader)
+
+class TestAvgBodyMassBySpeciesIsland(unittest.TestCase):
+
+    def test_general_case(self):
+        """General case: correct average computed for a known species/island."""
+        data = load_test_data("test_data.csv")
+        result = avg_body_mass_by_species_island(data)
+        # Chinstrap/Dream: (3700 + 3600 + 3650) / 3 = 3650.0
+        self.assertAlmostEqual(result["Chinstrap"]["Dream"], 3650.0)
+
+    def test_edge_case_missing_values(self):
+        """Edge case: NA rows are skipped and don't affect the average."""
+        data = load_test_data("test_data.csv")
+        result = avg_body_mass_by_species_island(data)
+        # Gentoo/Biscoe: (5000 + 4800 + 5200) / 3 = 5000.0 (NA row excluded)
+        self.assertAlmostEqual(result["Gentoo"]["Biscoe"], 5000.0)
+
+if __name__ == "__main__":
+    unittest.main()
 
