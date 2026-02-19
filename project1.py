@@ -161,6 +161,56 @@ def count_species_sex_by_island(data):
         result[species][island][sex] += 1
 
     return result
+def most_common_flipper_and_bill_by_island(data):
+    # For each Island, what is the most common flipper length and bill length (Elliot)
+    # Columns: “island,” “flipper_length_mm”, “bill_length_mm”
+    freqs = {}
+
+    for row in data:
+        island = row["island"]
+        flipper = row["flipper_length_mm"]
+        bill = row["bill_length_mm"]
+
+        if "" in (island, flipper, bill) or "NA" in (island, flipper, bill):
+            continue
+
+        flipper = float(flipper)
+        bill = float(bill)
+
+        if island not in freqs:
+            freqs[island] = {'flipper': {}, 'bill': {}}
+
+        if flipper not in freqs[island]['flipper']:
+            freqs[island]['flipper'][flipper] = 0
+        freqs[island]['flipper'][flipper] += 1
+
+        if bill not in freqs[island]['bill']:
+            freqs[island]['bill'][bill] = 0
+        freqs[island]['bill'][bill] += 1
+
+    result = {}
+    for island, counts in freqs.items():
+        
+        most_common_flipper = None
+        max_flipper_count = 0
+        for val, count in counts['flipper'].items():
+            if count > max_flipper_count:
+                most_common_flipper = val
+                max_flipper_count = count
+
+        most_common_bill = None
+        max_bill_count = 0
+        for val, count in counts['bill'].items():
+            if count > max_bill_count:
+                most_common_bill = val
+                max_bill_count = count
+
+        result[island] = {
+            "most_common_flipper_length": most_common_flipper,
+            "most_common_bill_length": most_common_bill
+        }
+
+    return result
 
 
 import unittest
