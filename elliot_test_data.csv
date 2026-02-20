@@ -1,0 +1,16 @@
+species,island,bill_length_mm,flipper_length_mm,sex
+Adelie,Torgersen,40.0,190.0,MALE
+Adelie,Torgersen,40.0,190.0,MALE
+Adelie,Torgersen,45.0,195.0,FEMALE
+Adelie,Biscoe,40.0,190.0,MALE
+Gentoo,Biscoe,50.0,210.0,FEMALE
+Gentoo,Biscoe,50.0,215.0,MALE
+Gentoo,Biscoe,55.0,210.0,MALE
+Chinstrap,Dream,48.0,195.0,FEMALE
+Chinstrap,Dream,52.0,200.0,MALE
+NA,Torgersen,40.0,190.0,MALE
+Adelie,NA,40.0,190.0,MALE
+Gentoo,Biscoe,NA,210.0,MALE
+Gentoo,Biscoe,50.0,NA,MALE
+Gentoo,Biscoe,50.0,210.0,NA
+Adelie,Torgersen,,190.0,
