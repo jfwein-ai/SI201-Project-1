@@ -1,12 +1,10 @@
-# Name:
-# Student ID:
-# Email:
-# Who or what you worked with on this homework (including generative AI like ChatGPT):
+# Name: Jared Weingarten, Elliot Bolour, Noam Altman
+# Student ID: 71252257
+# Email: jfwein@umich.edu, ebolour@umich.edu, noamalt@umich.edu
+# Who or what you worked with on this homework (including generative AI like ChatGPT): ChatGPT, Perplexity
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.: Used ChatGPT to learn how to import a CSV file into my code and to gaurantee Python always looks for the csv file in the same folder as my script. 
-# Asked ChatGPT hints for debugging and suggesting the general structure of the code
-# Did your use of GenAI on this assignment align with your goals and guidelines in 
-#    your Gen AI contract? If not, why?
+# Used ChatGPT to learn how to import a CSV file into my code and to gaurantee Python always looks for the csv file in the same folder as my script, to help us create csv files for our test cases, to help us write our output to a .txt file, and to help debug functions.
+# Did your use of GenAI on this assignment align with your goals and guidelines in your Gen AI contract? If not, why? 
 
 import csv
 import os
