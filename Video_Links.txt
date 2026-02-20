@@ -1,1 +1,4 @@
-"Google Drive link containing our videos: https://drive.google.com/file/d/1QtMm6gXGkQiqgjuttti-Ogz31Iz1IgA0/view?usp=sharing"
+"Noam Video: https://drive.google.com/file/d/1QtMm6gXGkQiqgjuttti-Ogz31Iz1IgA0/view?usp=sharing"
+"Elliot Video: https://drive.google.com/file/d/1iAh8vn8qu3T07JT56OC3w3hZNu-NGr5W/view?usp=sharing"
+"Jared Video: https://drive.google.com/file/d/1EkvPh0GO_cLLSfy-bqpPTQr7mUlxSSvw/view?usp=sharing"
+"Function Diagram Video: https://drive.google.com/file/d/1Zzf0PnAgYV7gBu6mAHupFbhIBktSNxSv/view?usp=sharing"
