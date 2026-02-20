@@ -101,12 +101,16 @@ def male_flipper_length_Adelie(data):
 
         if flipper == "NA" or flipper == "" or sex == "NA" or sex == "":
             continue
-        
-        if species != "Adelie" or sex != "MALE":
+
+        if species != "Adelie" or sex.upper() != "MALE":
             continue
-            
+
         total += float(flipper)
         count += 1
+
+    if count == 0:
+        return None
+    
 
     return total / count
 
@@ -215,6 +219,33 @@ def most_common_flipper_and_bill_by_island(data):
         }
 
     return result
+
+def write_output(rows, output_path):
+    with open(output_path, "w") as f:
+
+        f.write("avg_body_mass_by_species_island\n")
+        f.write(str(avg_body_mass_by_species_island(rows)) + "\n\n")
+
+        f.write("avg_flipper_length_by_year_sex\n")
+        f.write(str(avg_flipper_length_by_year_sex(rows)) + "\n\n")
+
+        f.write("male_flipper_length_Adelie\n")
+        f.write(str(male_flipper_length_Adelie(rows)) + "\n\n")
+
+        f.write("over_50_bill_biscoe\n")
+        f.write(str(over_50_bill_biscoe(rows)) + "\n\n")
+
+        f.write("count_species_sex_by_island\n")
+        f.write(str(count_species_sex_by_island(rows)) + "\n\n")
+
+        f.write("most_common_flipper_and_bill_by_island\n")
+        f.write(str(most_common_flipper_and_bill_by_island(rows)) + "\n\n")
+output_path = os.path.join(current_dir, "output.txt")
+write_output(rows, output_path)
+
+
+
+
 
 
 import unittest
@@ -327,7 +358,7 @@ class TestMostCommonFlipperAndBillByIsland(unittest.TestCase):
         self.assertNotIn("", result)
         self.assertEqual(result["Torgersen"]["most_common_flipper_length"], 190.0)
         self.assertEqual(result["Torgersen"]["most_common_bill_length"], 40.0)
-        
+
 if __name__ == "__main__":
     unittest.main()
 
