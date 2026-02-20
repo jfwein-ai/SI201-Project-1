@@ -1,5 +1,5 @@
 # Name: Jared Weingarten, Elliot Bolour, Noam Altman
-# Student ID: 71252257
+# Student ID: 71252257,99421980, 88196639
 # Email: jfwein@umich.edu, ebolour@umich.edu, noamalt@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT): ChatGPT, Perplexity
 # If you worked with generative AI also add a statement for how you used it.
