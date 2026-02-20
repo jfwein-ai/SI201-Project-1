@@ -138,7 +138,11 @@ def over_50_bill_biscoe(data):
         result[species] += 1
 
     return result
+
 def count_species_sex_by_island(data):
+    # Make a dictionary the returns how much of each penguin species of each sex, lives on each island (Elliot)
+    # Columns: “species,” “island”, and “sex”
+
     result = {}
 
     for row in data:
@@ -285,6 +289,7 @@ class TestNumBiscoeBillLengthAtLeastFifty(unittest.TestCase):
         result = over_50_bill_biscoe(data)
         # Chinstrap only appears on Dream island, so it should not exist in result
         self.assertNotIn("Chinstrap", result)
+
 class TestCountSpeciesSexByIsland(unittest.TestCase):
     
     def setUp(self):
@@ -322,6 +327,7 @@ class TestMostCommonFlipperAndBillByIsland(unittest.TestCase):
         self.assertNotIn("", result)
         self.assertEqual(result["Torgersen"]["most_common_flipper_length"], 190.0)
         self.assertEqual(result["Torgersen"]["most_common_bill_length"], 40.0)
+        
 if __name__ == "__main__":
     unittest.main()
 
