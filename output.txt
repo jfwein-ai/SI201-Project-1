@@ -1,0 +1,18 @@
+avg_body_mass_by_species_island
+{'Adelie': {'Torgersen': 3706.372549019608, 'Biscoe': 3709.659090909091, 'Dream': 3688.3928571428573}, 'Gentoo': {'Biscoe': 5076.016260162602}, 'Chinstrap': {'Dream': 3733.0882352941176}}
+
+avg_flipper_length_by_year_sex
+{'2007': {'male': 200.21153846153845, 'female': 194.2156862745098}, '2008': {'female': 198.76785714285714, 'male': 206.56140350877192}, '2009': {'female': 198.77586206896552, 'male': 206.3050847457627}}
+
+male_flipper_length_Adelie
+192.41095890410958
+
+over_50_bill_biscoe
+{'Gentoo': 26}
+
+count_species_sex_by_island
+{'Adelie': {'Torgersen': {'male': 23, 'female': 24}, 'Biscoe': {'female': 22, 'male': 22}, 'Dream': {'female': 27, 'male': 28}}, 'Gentoo': {'Biscoe': {'female': 58, 'male': 61}}, 'Chinstrap': {'Dream': {'female': 34, 'male': 34}}}
+
+most_common_flipper_and_bill_by_island
+{'Torgersen': {'most_common_flipper_length': 190.0, 'most_common_bill_length': 36.7}, 'Biscoe': {'most_common_flipper_length': 215.0, 'most_common_bill_length': 50.0}, 'Dream': {'most_common_flipper_length': 190.0, 'most_common_bill_length': 36.0}}
+
